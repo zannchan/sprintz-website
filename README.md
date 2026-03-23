@@ -1,24 +1,17 @@
-# Sprintz Holdings Vercel Website
-
-This is a Vite + React website project prepared for Sprintz Holdings Pte. Ltd.
-
-## Run locally
-
-```bash
-npm install
-npm run dev
-```
-
-## Build for production
-
-```bash
-npm run build
-```
-
-## Deploy to Vercel
-
-1. Upload all files to your GitHub repo.
-2. Connect the repo to Vercel.
-3. Vercel will auto-detect Vite.
-4. Add `www.sprintz.com.sg` and `sprintz.com.sg` in Vercel domain settings.
-5. Set `www.sprintz.com.sg` as the primary domain.
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sprintz Holdings Pte. Ltd. | International Trading Corporation</title>
+    <meta
+      name="description"
+      content="Sprintz Holdings Pte. Ltd. is a Singapore-based international trading corporation supporting industrial supply, energy-related trade, agri-commodity sourcing, and cross-border procurement coordination."
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
