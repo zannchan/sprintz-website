@@ -1,375 +1,483 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useState } from 'react';
+import './styles.css';
 
 const translations = {
   en: {
+    brand: 'Sprintz Holdings',
     navAbout: 'About',
     navSectors: 'Sectors',
     navMarkets: 'Markets',
     navContact: 'Contact',
-    heroBadge: 'Singapore-Based International Trading Corporation',
+    badge: 'Singapore-Based International Trading Corporation',
     heroTitle: 'Global Trade. Structured Supply. Professional Execution.',
     heroText:
-      'Sprintz Holdings Pte. Ltd. supports cross-border trade with a disciplined corporate approach to sourcing, supply coordination, and international commercial execution.',
+      'Sprintz Holdings Pte. Ltd. supports international business across commodities, energy, industrial automation, aviation, medical supply, and strategic procurement.',
     primaryCta: 'Request a Quote',
     secondaryCta: 'Explore Capabilities',
-    stat1Label: 'Positioning',
-    stat1Value: 'International Trading',
-    stat2Label: 'Focus',
-    stat2Value: 'Supply & Procurement',
-    stat3Label: 'Approach',
-    stat3Value: 'Reliable Commercial Support',
-    whyTitle: 'Why global partners work with Sprintz',
+    strengthTitle: 'Why global partners engage Sprintz',
     strengths: [
-      'Singapore-based trading platform with international outlook',
+      'Singapore-based international trade platform',
       'Cross-border sourcing and supplier coordination',
-      'Commercial documentation and transaction support',
-      'Responsive handling for buyers, suppliers, and partners',
-      'Professional presentation for international counterparties',
-      'Clear enquiry and quotation workflow'
+      'Professional commercial documentation support',
+      'Coverage across commodities, fuel, metals, medical and industrial equipment',
+      'Responsive handling for regional buyers and partners',
+      'Clear enquiry and quote workflow',
     ],
-    aboutEyebrow: 'About Sprintz',
-    aboutTitle: 'A stronger corporate profile for serious cross-border business.',
+    stats: [
+      ['Positioning', 'International Trading'],
+      ['Focus', 'Supply & Procurement'],
+      ['Approach', 'Commercial Reliability'],
+    ],
+    aboutTitle: 'A broader corporate profile for serious cross-border business.',
     aboutText1:
-      'Sprintz is positioned as a polished Singapore-headquartered trading company focused on credibility, responsiveness, and structured business execution.',
+      'Sprintz is positioned as a polished Singapore-headquartered trading company with capabilities spanning commodity supply, energy products, industrial equipment, aviation, and medical procurement.',
     aboutText2:
-      'The site is designed to communicate trust, commercial discipline, and regional market connectivity while remaining broad enough to support multiple product and sector discussions.',
-    sectorsEyebrow: 'Core Sectors',
-    sectorsTitle: 'Capabilities presented with an international corporate tone.',
+      'The emphasis is on trust, structured execution, professional responsiveness, and readiness for regional and international counterparties.',
+    sectorsTitle: 'Core business sectors',
     sectors: [
-      {
-        title: 'Industrial Equipment & Automation',
-        text: 'Support for factory systems, technical sourcing, industrial components, and procurement-led supply discussions.'
-      },
-      {
-        title: 'Energy & Fuel Trading',
-        text: 'Commercial coordination for structured energy transactions, supply alignment, and international trade engagement.'
-      },
-      {
-        title: 'Agri & Commodity Supply',
-        text: 'Trade support across agricultural commodities, bulk goods, and contract-based supply arrangements.'
-      },
-      {
-        title: 'Strategic Trade Facilitation',
-        text: 'Business matching, procurement coordination, document support, and execution oversight for regional opportunities.'
-      }
+      ['ICUMSA 45 Sugar', 'Refined sugar supply for international contract and spot discussions.'],
+      ['Agricultural Commodities', 'Non-GMO soya beans, yellow corn for animal feed, chicken paws, and related trade flows.'],
+      ['Metals & Minerals', 'Iron ore fines, copper cathodes, nickel, aluminium ingots, lithium, gold, scrap metals, and coal.'],
+      ['Energy Products', 'EN590, LNG, LPG, light cycle oil, and light crude oil supply discussions.'],
+      ['Industrial Automation', 'Industrial electrical and automation product sourcing including Siemens and Allen-Bradley / Rockwell enquiries.'],
+      ['Aviation & Medical Supply', 'Aviation equipment, medical equipment, consumables, and project procurement support.'],
     ],
-    marketsEyebrow: 'Market Reach',
     marketsTitle: 'Built for regional and international counterparties.',
     markets: ['Singapore', 'China', 'Middle East', 'Southeast Asia', 'South Asia'],
-    diffEyebrow: 'Corporate Differentiation',
-    diffTitle: 'What the new site should communicate immediately.',
-    diffs: [
-      'Professional and credible',
-      'Internationally oriented',
-      'Commercially structured',
-      'Easy to contact and engage',
-      'Broad but disciplined in scope',
-      'Suitable for buyers, suppliers, and partners'
-    ],
-    contactEyebrow: 'Contact',
     contactTitle: 'Start a business enquiry.',
     contactText:
-      'Use one clean corporate enquiry form and a direct WhatsApp action for faster response and more professional lead handling.',
-    address: '22 Sin Ming Lane, #06-76, Midview City, Singapore 573969',
-    formName: 'Full Name',
-    formCompany: 'Company',
-    formEmail: 'Email Address',
-    formSubject: 'Subject',
-    formMessage: 'Tell us about your requirement',
+      'Submit your requirement directly through the website. Our team will review and respond to qualified enquiries.',
+    officeTitle: 'Registered Office',
+    officeAddress: '22 Sin Ming Lane, #06-76, Midview City, Singapore 573969',
+    name: 'Full Name',
+    company: 'Company',
+    email: 'Business Email',
+    subject: 'Subject',
+    message: 'Tell us about your requirement',
     submit: 'Submit Enquiry',
+    submitting: 'Submitting...',
     whatsapp: 'WhatsApp Us',
-    formSuccess: 'Thank you. Your enquiry has been prepared in your email app.',
-    formIncomplete: 'Please complete name, email, subject, and message.',
-    floatingWhatsapp: 'Chat on WhatsApp',
-    footerText: 'Sprintz Holdings Pte. Ltd. • International Trading Corporation • Singapore'
+    success: 'Thank you. Your enquiry has been submitted successfully.',
+    error: 'Unable to submit enquiry. Please try again.',
+    required: 'Please fill in all required fields.',
+    footer: 'Sprintz Holdings Pte. Ltd. — International trade, procurement, and supply coordination.',
+    whatsappFloat: 'Chat on WhatsApp',
   },
   zh: {
-    navAbout: '关于我们', navSectors: '业务领域', navMarkets: '市场', navContact: '联系',
-    heroBadge: '新加坡国际贸易企业',
-    heroTitle: '全球贸易 · 结构化供应 · 专业执行',
-    heroText: 'Sprintz Holdings Pte. Ltd. 以严谨的企业化方式支持跨境采购、供应协调与国际商务执行。',
-    primaryCta: '索取报价', secondaryCta: '查看业务能力',
-    stat1Label: '定位', stat1Value: '国际贸易', stat2Label: '重点', stat2Value: '供应与采购', stat3Label: '方式', stat3Value: '可靠商务支持',
-    whyTitle: '国际合作伙伴选择 Sprintz 的原因',
-    strengths: ['立足新加坡，面向国际市场','跨境采购与供应商协调','商务文件与交易支持','快速响应买家、供应商与合作伙伴','适合国际客户的专业企业形象','清晰的询盘与报价流程'],
-    aboutEyebrow: '关于 Sprintz',
-    aboutTitle: '为严肃跨境业务建立更强的企业形象。',
-    aboutText1: 'Sprintz 被定位为一家总部位于新加坡、注重信誉、效率与执行力的国际贸易公司。',
-    aboutText2: '网站强调信任、商务纪律及区域市场连接能力，同时保持足够广泛，以支持多行业和多产品讨论。',
-    sectorsEyebrow: '核心领域',
-    sectorsTitle: '以国际企业语气展示业务能力。',
-    sectors: [
-      { title: '工业设备与自动化', text: '支持工厂系统、技术采购、工业零件及以采购为导向的供应合作。' },
-      { title: '能源与燃料贸易', text: '支持结构化能源交易、供应对接与国际贸易合作。' },
-      { title: '农业与大宗商品供应', text: '支持农产品、大宗货物及合同型供应安排。' },
-      { title: '战略贸易促进', text: '提供商业对接、采购协调、文件支持及区域项目执行协助。' }
+    brand: 'Sprintz Holdings',
+    navAbout: '关于我们',
+    navSectors: '业务领域',
+    navMarkets: '市场',
+    navContact: '联系',
+    badge: '新加坡国际贸易企业',
+    heroTitle: '全球贸易。系统供应。专业执行。',
+    heroText:
+      'Sprintz Holdings Pte. Ltd. 专注于大宗商品、能源、工业自动化、航空、医疗供应及战略采购的国际业务。',
+    primaryCta: '询价',
+    secondaryCta: '查看业务能力',
+    strengthTitle: '全球合作伙伴选择 Sprintz 的原因',
+    strengths: [
+      '立足新加坡的国际贸易平台',
+      '跨境采购与供应商协调',
+      '专业商务文件支持',
+      '覆盖大宗商品、燃料、金属、医疗及工业设备',
+      '快速响应区域买家与合作伙伴',
+      '清晰的询价与报价流程',
     ],
-    marketsEyebrow: '市场覆盖', marketsTitle: '服务区域及国际合作伙伴。', markets: ['新加坡', '中国', '中东', '东南亚', '南亚'],
-    diffEyebrow: '企业差异化', diffTitle: '网站应立即传达的核心印象。', diffs: ['专业可信','国际导向','商务结构清晰','便于联系合作','范围广但重点明确','适合买家、供应商与合作伙伴'],
-    contactEyebrow: '联系', contactTitle: '开始商务询盘。', contactText: '使用简洁专业的企业询盘表单及 WhatsApp 入口，以提升响应效率和线索管理。',
-    address: '22 Sin Ming Lane, #06-76, Midview City, Singapore 573969',
-    formName: '姓名', formCompany: '公司', formEmail: '电子邮箱', formSubject: '主题', formMessage: '请说明您的需求', submit: '提交询盘', whatsapp: 'WhatsApp 联系',
-    formSuccess: '感谢您，询盘内容已为您准备到电子邮件应用中。', formIncomplete: '请填写姓名、邮箱、主题和需求内容。', floatingWhatsapp: 'WhatsApp 即时联系',
-    footerText: 'Sprintz Holdings Pte. Ltd. • 国际贸易企业 • 新加坡'
+    stats: [
+      ['定位', '国际贸易'],
+      ['重点', '供应与采购'],
+      ['方式', '商业可靠性'],
+    ],
+    aboutTitle: '为严肃跨境业务打造更全面的企业形象。',
+    aboutText1:
+      'Sprintz 被定位为一家总部位于新加坡的专业贸易公司，业务涵盖大宗商品供应、能源产品、工业设备、航空及医疗采购。',
+    aboutText2:
+      '网站重点强调信誉、系统执行、专业响应以及面对区域和国际交易对手的业务准备度。',
+    sectorsTitle: '核心业务领域',
+    sectors: [
+      ['ICUMSA 45 白糖', '用于国际合约及现货讨论的精制糖供应。'],
+      ['农产品', '非转基因食用大豆、饲料黄玉米、鸡爪及相关贸易。'],
+      ['金属与矿产', '铁矿粉、阴极铜、镍、铝锭、锂、黄金、废金属及煤炭。'],
+      ['能源产品', 'EN590、LNG、LPG、轻循环油及轻质原油。'],
+      ['工业自动化', '工业电气与自动化产品采购，包括 Siemens 和 Allen-Bradley / Rockwell 相关需求。'],
+      ['航空与医疗供应', '航空设备、医疗设备、耗材及项目采购支持。'],
+    ],
+    marketsTitle: '服务区域及国际合作伙伴。',
+    markets: ['新加坡', '中国', '中东', '东南亚', '南亚'],
+    contactTitle: '开始商务询问。',
+    contactText: '请直接通过网站提交需求，我们会审核并回复合格询盘。',
+    officeTitle: '注册地址',
+    officeAddress: '22 Sin Ming Lane, #06-76, Midview City, Singapore 573969',
+    name: '姓名',
+    company: '公司',
+    email: '商务邮箱',
+    subject: '主题',
+    message: '请说明您的需求',
+    submit: '提交询问',
+    submitting: '提交中...',
+    whatsapp: 'WhatsApp 联系',
+    success: '感谢您，您的询问已成功提交。',
+    error: '提交失败，请稍后再试。',
+    required: '请填写所有必填字段。',
+    footer: 'Sprintz Holdings Pte. Ltd. — 国际贸易、采购与供应协调。',
+    whatsappFloat: 'WhatsApp 联系',
   },
   ar: {
-    navAbout: 'من نحن', navSectors: 'القطاعات', navMarkets: 'الأسواق', navContact: 'اتصل بنا',
-    heroBadge: 'شركة تجارة دولية مقرها سنغافورة',
+    brand: 'Sprintz Holdings',
+    navAbout: 'حول',
+    navSectors: 'القطاعات',
+    navMarkets: 'الأسواق',
+    navContact: 'اتصل',
+    badge: 'شركة تجارة دولية مقرها سنغافورة',
     heroTitle: 'تجارة عالمية. توريد منظم. تنفيذ مهني.',
-    heroText: 'تدعم Sprintz Holdings Pte. Ltd. التجارة العابرة للحدود من خلال نهج مؤسسي منضبط في التوريد وتنسيق الإمداد والتنفيذ التجاري الدولي.',
-    primaryCta: 'طلب عرض سعر', secondaryCta: 'استكشاف القدرات',
-    stat1Label: 'التموضع', stat1Value: 'تجارة دولية', stat2Label: 'التركيز', stat2Value: 'التوريد والمشتريات', stat3Label: 'النهج', stat3Value: 'دعم تجاري موثوق',
-    whyTitle: 'لماذا يعمل الشركاء العالميون مع Sprintz',
-    strengths: ['منصة تجارية مقرها سنغافورة ذات توجه دولي','تنسيق التوريد والموردين عبر الحدود','دعم المستندات التجارية والمعاملات','استجابة فعالة للمشترين والموردين والشركاء','حضور مهني ملائم للأطراف الدولية','مسار واضح للاستفسارات وطلبات الأسعار'],
-    aboutEyebrow: 'حول Sprintz', aboutTitle: 'هوية مؤسسية أقوى للأعمال العابرة للحدود.',
-    aboutText1: 'يتم تقديم Sprintz كشركة تجارية مقرها سنغافورة تركز على المصداقية وسرعة الاستجابة والتنفيذ المنظم.',
-    aboutText2: 'صُمم الموقع ليعكس الثقة والانضباط التجاري والربط الإقليمي مع الحفاظ على مرونة كافية لدعم قطاعات ومنتجات متعددة.',
-    sectorsEyebrow: 'القطاعات الأساسية', sectorsTitle: 'قدرات معروضة بنبرة مؤسسية دولية.',
-    sectors: [
-      { title: 'المعدات الصناعية والأتمتة', text: 'دعم أنظمة المصانع والتوريد الفني والمكونات الصناعية ومناقشات الإمداد القائمة على المشتريات.' },
-      { title: 'تجارة الطاقة والوقود', text: 'تنسيق تجاري لصفقات الطاقة المنظمة ومواءمة الإمداد والتعامل التجاري الدولي.' },
-      { title: 'توريد السلع الزراعية والمواد الأساسية', text: 'دعم تجاري للسلع الزراعية والبضائع السائبة واتفاقيات التوريد التعاقدية.' },
-      { title: 'تسهيل التجارة الاستراتيجية', text: 'مواءمة الأعمال وتنسيق المشتريات ودعم المستندات والإشراف التنفيذي للفرص الإقليمية.' }
+    heroText:
+      'تدعم Sprintz Holdings الأعمال الدولية عبر السلع والطاقة والأتمتة الصناعية والطيران والمستلزمات الطبية والمشتريات الاستراتيجية.',
+    primaryCta: 'طلب عرض سعر',
+    secondaryCta: 'استكشف القدرات',
+    strengthTitle: 'لماذا يتعامل الشركاء العالميون مع Sprintz',
+    strengths: [
+      'منصة تجارة دولية مقرها سنغافورة',
+      'تنسيق التوريد والموردين عبر الحدود',
+      'دعم مهني للوثائق التجارية',
+      'تغطية للسلع والوقود والمعادن والمستلزمات الطبية والمعدات الصناعية',
+      'استجابة سريعة للمشترين والشركاء الإقليميين',
+      'مسار واضح للاستفسار والتسعير',
     ],
-    marketsEyebrow: 'الانتشار السوقي', marketsTitle: 'مصمم للشركاء الإقليميين والدوليين.', markets: ['سنغافورة', 'الصين', 'الشرق الأوسط', 'جنوب شرق آسيا', 'جنوب آسيا'],
-    diffEyebrow: 'التميّز المؤسسي', diffTitle: 'ما الذي يجب أن يوصله الموقع فوراً.', diffs: ['مهني وموثوق','توجه دولي','هيكل تجاري واضح','سهل التواصل والتفاعل','واسع لكن منضبط','مناسب للمشترين والموردين والشركاء'],
-    contactEyebrow: 'التواصل', contactTitle: 'ابدأ استفساراً تجارياً.', contactText: 'استخدم نموذج استفسار مؤسسي واضح مع إجراء مباشر عبر واتساب لتحسين سرعة الاستجابة وإدارة العملاء المحتملين.',
-    address: '22 Sin Ming Lane, #06-76, Midview City, Singapore 573969',
-    formName: 'الاسم الكامل', formCompany: 'الشركة', formEmail: 'البريد الإلكتروني', formSubject: 'الموضوع', formMessage: 'أخبرنا بمتطلباتك', submit: 'إرسال الاستفسار', whatsapp: 'راسلنا عبر واتساب',
-    formSuccess: 'شكراً لك. تم تجهيز استفسارك في تطبيق البريد الإلكتروني.', formIncomplete: 'يرجى إكمال الاسم والبريد الإلكتروني والموضوع والرسالة.', floatingWhatsapp: 'الدردشة عبر واتساب',
-    footerText: 'Sprintz Holdings Pte. Ltd. • شركة تجارة دولية • سنغافورة'
+    stats: [
+      ['التموضع', 'تجارة دولية'],
+      ['التركيز', 'التوريد والمشتريات'],
+      ['النهج', 'موثوقية تجارية'],
+    ],
+    aboutTitle: 'هوية مؤسسية أوسع للأعمال الجادة العابرة للحدود.',
+    aboutText1:
+      'يتم تقديم Sprintz كشركة تجارة احترافية مقرها سنغافورة مع قدرات تشمل السلع والطاقة والمعدات الصناعية والطيران والمشتريات الطبية.',
+    aboutText2:
+      'يركز الموقع على الثقة والتنفيذ المنظم والاستجابة المهنية والاستعداد للتعامل مع الأطراف الإقليمية والدولية.',
+    sectorsTitle: 'القطاعات الأساسية',
+    sectors: [
+      ['سكر ICUMSA 45', 'توريد السكر المكرر للعقود الدولية والمناقشات الفورية.'],
+      ['السلع الزراعية', 'فول الصويا غير المعدل وراثياً للاستهلاك البشري، الذرة الصفراء للأعلاف، أقدام الدجاج وغيرها.'],
+      ['المعادن والخامات', 'غرامات خام الحديد، كاثود النحاس، النيكل، سبائك الألمنيوم، الليثيوم، الذهب، الخردة والمعادن والفحم.'],
+      ['منتجات الطاقة', 'EN590 وLNG وLPG وزيت الدورة الخفيفة والنفط الخام الخفيف.'],
+      ['الأتمتة الصناعية', 'توريد المنتجات الكهربائية والأتمتة الصناعية بما في ذلك Siemens وAllen-Bradley / Rockwell.'],
+      ['الطيران والطب', 'معدات الطيران والمعدات الطبية والمستهلكات ودعم المشتريات للمشاريع.'],
+    ],
+    marketsTitle: 'مصمم للشركاء الإقليميين والدوليين.',
+    markets: ['سنغافورة', 'الصين', 'الشرق الأوسط', 'جنوب شرق آسيا', 'جنوب آسيا'],
+    contactTitle: 'ابدأ استفساراً تجارياً.',
+    contactText: 'أرسل متطلباتك مباشرة عبر الموقع وسيقوم فريقنا بمراجعة الاستفسارات والرد عليها.',
+    officeTitle: 'العنوان المسجل',
+    officeAddress: '22 Sin Ming Lane, #06-76, Midview City, Singapore 573969',
+    name: 'الاسم الكامل',
+    company: 'الشركة',
+    email: 'البريد الإلكتروني',
+    subject: 'الموضوع',
+    message: 'أخبرنا بمتطلباتك',
+    submit: 'إرسال الاستفسار',
+    submitting: 'جارٍ الإرسال...',
+    whatsapp: 'واتساب',
+    success: 'شكراً لك. تم إرسال استفسارك بنجاح.',
+    error: 'تعذر إرسال الاستفسار. حاول مرة أخرى.',
+    required: 'يرجى تعبئة جميع الحقول المطلوبة.',
+    footer: 'Sprintz Holdings Pte. Ltd. — التجارة الدولية والمشتريات وتنسيق التوريد.',
+    whatsappFloat: 'الدردشة على واتساب',
   },
   id: {
-    navAbout: 'Tentang', navSectors: 'Sektor', navMarkets: 'Pasar', navContact: 'Kontak',
-    heroBadge: 'Korporasi Perdagangan Internasional Berbasis di Singapura',
+    brand: 'Sprintz Holdings',
+    navAbout: 'Tentang',
+    navSectors: 'Sektor',
+    navMarkets: 'Pasar',
+    navContact: 'Kontak',
+    badge: 'Perusahaan Perdagangan Internasional Berbasis Singapura',
     heroTitle: 'Perdagangan Global. Pasokan Terstruktur. Eksekusi Profesional.',
-    heroText: 'Sprintz Holdings Pte. Ltd. mendukung perdagangan lintas negara dengan pendekatan korporat yang disiplin untuk sourcing, koordinasi pasokan, dan eksekusi komersial internasional.',
-    primaryCta: 'Minta Penawaran', secondaryCta: 'Lihat Kapabilitas',
-    stat1Label: 'Posisi', stat1Value: 'Perdagangan Internasional', stat2Label: 'Fokus', stat2Value: 'Pasokan & Pengadaan', stat3Label: 'Pendekatan', stat3Value: 'Dukungan Komersial Andal',
-    whyTitle: 'Mengapa mitra global bekerja dengan Sprintz',
-    strengths: ['Platform perdagangan berbasis Singapura dengan orientasi internasional','Koordinasi sourcing dan pemasok lintas negara','Dukungan dokumentasi dan transaksi komersial','Responsif untuk pembeli, pemasok, dan mitra','Presentasi profesional untuk rekanan internasional','Alur enquiry dan quotation yang jelas'],
-    aboutEyebrow: 'Tentang Sprintz', aboutTitle: 'Profil korporat yang lebih kuat untuk bisnis lintas negara.',
-    aboutText1: 'Sprintz diposisikan sebagai perusahaan perdagangan berkantor pusat di Singapura yang fokus pada kredibilitas, responsivitas, dan eksekusi bisnis yang terstruktur.',
-    aboutText2: 'Situs ini dirancang untuk menyampaikan kepercayaan, disiplin komersial, dan konektivitas pasar regional sambil tetap cukup luas untuk mendukung berbagai sektor dan produk.',
-    sectorsEyebrow: 'Sektor Inti', sectorsTitle: 'Kapabilitas dengan nada korporat internasional.',
-    sectors: [
-      { title: 'Peralatan Industri & Otomasi', text: 'Dukungan untuk sistem pabrik, sourcing teknis, komponen industri, dan diskusi pasokan berbasis pengadaan.' },
-      { title: 'Perdagangan Energi & Bahan Bakar', text: 'Koordinasi komersial untuk transaksi energi terstruktur, penyelarasan pasokan, dan keterlibatan perdagangan internasional.' },
-      { title: 'Pasokan Agrikultur & Komoditas', text: 'Dukungan perdagangan untuk komoditas pertanian, barang curah, dan pengaturan pasokan berbasis kontrak.' },
-      { title: 'Fasilitasi Perdagangan Strategis', text: 'Pencocokan bisnis, koordinasi pengadaan, dukungan dokumen, dan pengawasan eksekusi untuk peluang regional.' }
+    heroText:
+      'Sprintz Holdings Pte. Ltd. mendukung bisnis internasional di bidang komoditas, energi, otomasi industri, penerbangan, pasokan medis, dan pengadaan strategis.',
+    primaryCta: 'Minta Penawaran',
+    secondaryCta: 'Lihat Kapabilitas',
+    strengthTitle: 'Mengapa mitra global bekerja dengan Sprintz',
+    strengths: [
+      'Platform perdagangan internasional berbasis Singapura',
+      'Koordinasi sourcing dan pemasok lintas negara',
+      'Dukungan dokumentasi komersial profesional',
+      'Cakupan komoditas, bahan bakar, logam, peralatan medis dan industri',
+      'Respons cepat untuk pembeli dan mitra regional',
+      'Alur enquiry dan quotation yang jelas',
     ],
-    marketsEyebrow: 'Jangkauan Pasar', marketsTitle: 'Dibangun untuk rekanan regional dan internasional.', markets: ['Singapura', 'Tiongkok', 'Timur Tengah', 'Asia Tenggara', 'Asia Selatan'],
-    diffEyebrow: 'Diferensiasi Korporat', diffTitle: 'Apa yang harus langsung dikomunikasikan situs ini.', diffs: ['Profesional dan kredibel','Berorientasi internasional','Terstruktur secara komersial','Mudah dihubungi dan diajak bekerja sama','Ruang lingkup luas namun terarah','Sesuai untuk pembeli, pemasok, dan mitra'],
-    contactEyebrow: 'Kontak', contactTitle: 'Mulai enquiry bisnis.', contactText: 'Gunakan satu formulir enquiry korporat yang rapi dan tombol WhatsApp langsung untuk respons yang lebih cepat dan penanganan lead yang lebih profesional.',
-    address: '22 Sin Ming Lane, #06-76, Midview City, Singapore 573969',
-    formName: 'Nama Lengkap', formCompany: 'Perusahaan', formEmail: 'Alamat Email', formSubject: 'Subjek', formMessage: 'Ceritakan kebutuhan Anda', submit: 'Kirim Enquiry', whatsapp: 'WhatsApp Kami',
-    formSuccess: 'Terima kasih. Enquiry Anda sudah disiapkan di aplikasi email.', formIncomplete: 'Mohon lengkapi nama, email, subjek, dan pesan.', floatingWhatsapp: 'Chat WhatsApp',
-    footerText: 'Sprintz Holdings Pte. Ltd. • Korporasi Perdagangan Internasional • Singapura'
-  }
-}
+    stats: [
+      ['Posisi', 'Perdagangan Internasional'],
+      ['Fokus', 'Supply & Procurement'],
+      ['Pendekatan', 'Keandalan Komersial'],
+    ],
+    aboutTitle: 'Profil korporat yang lebih luas untuk bisnis lintas negara yang serius.',
+    aboutText1:
+      'Sprintz diposisikan sebagai perusahaan trading profesional berbasis Singapura dengan kapabilitas di pasokan komoditas, produk energi, peralatan industri, penerbangan, dan pengadaan medis.',
+    aboutText2:
+      'Fokus website adalah kepercayaan, eksekusi terstruktur, respons profesional, dan kesiapan untuk counterparty regional maupun internasional.',
+    sectorsTitle: 'Sektor bisnis utama',
+    sectors: [
+      ['Gula ICUMSA 45', 'Pasokan gula rafinasi untuk kontrak internasional dan pembahasan spot.'],
+      ['Komoditas Pertanian', 'Kedelai non-GMO untuk konsumsi manusia, jagung kuning untuk pakan ternak, ceker ayam, dan lain-lain.'],
+      ['Logam & Mineral', 'Iron ore fines, copper cathodes, nickel, aluminium ingots, lithium, emas, scrap metals, dan coal.'],
+      ['Produk Energi', 'EN590, LNG, LPG, light cycle oil, dan light crude oil.'],
+      ['Otomasi Industri', 'Sourcing produk elektrikal dan otomasi industri termasuk Siemens dan Allen-Bradley / Rockwell.'],
+      ['Penerbangan & Medis', 'Peralatan penerbangan, alat kesehatan, consumables, dan dukungan pengadaan proyek.'],
+    ],
+    marketsTitle: 'Dibangun untuk counterparty regional dan internasional.',
+    markets: ['Singapura', 'China', 'Timur Tengah', 'Asia Tenggara', 'Asia Selatan'],
+    contactTitle: 'Mulai enquiry bisnis.',
+    contactText: 'Kirim kebutuhan Anda langsung melalui website. Tim kami akan meninjau dan merespons enquiry yang relevan.',
+    officeTitle: 'Alamat Terdaftar',
+    officeAddress: '22 Sin Ming Lane, #06-76, Midview City, Singapore 573969',
+    name: 'Nama Lengkap',
+    company: 'Perusahaan',
+    email: 'Email Bisnis',
+    subject: 'Subjek',
+    message: 'Ceritakan kebutuhan Anda',
+    submit: 'Kirim Enquiry',
+    submitting: 'Mengirim...',
+    whatsapp: 'WhatsApp Kami',
+    success: 'Terima kasih. Enquiry Anda berhasil dikirim.',
+    error: 'Gagal mengirim enquiry. Silakan coba lagi.',
+    required: 'Mohon isi semua kolom yang wajib.',
+    footer: 'Sprintz Holdings Pte. Ltd. — perdagangan internasional, pengadaan, dan koordinasi pasokan.',
+    whatsappFloat: 'Chat di WhatsApp',
+  },
+};
 
-const languages = [
-  { code: 'en', label: 'EN' },
-  { code: 'zh', label: '中文' },
-  { code: 'ar', label: 'العربية' },
-  { code: 'id', label: 'ID' }
-]
+const langs = ['en', 'zh', 'ar', 'id'];
 
 export default function App() {
-  const [lang, setLang] = useState('en')
-  const [formData, setFormData] = useState({ name: '', company: '', email: '', subject: '', message: '' })
-  const [formStatus, setFormStatus] = useState('idle')
-  const t = useMemo(() => translations[lang], [lang])
-  const isRtl = lang === 'ar'
+  const [lang, setLang] = useState('en');
+  const [form, setForm] = useState({
+    name: '',
+    company: '',
+    email: '',
+    subject: '',
+    message: '',
+  });
+  const [status, setStatus] = useState({ type: '', text: '' });
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleChange = (field) => (event) => {
-    setFormData((current) => ({ ...current, [field]: event.target.value }))
-    if (formStatus !== 'idle') setFormStatus('idle')
+  const t = useMemo(() => translations[lang], [lang]);
+  const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '6583889168';
+  const isArabic = lang === 'ar';
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
   }
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
+  async function handleSubmit(e) {
+    e.preventDefault();
 
-    const requiredFields = ['name', 'email', 'subject', 'message']
-    const hasMissingFields = requiredFields.some((field) => !formData[field].trim())
-
-    if (hasMissingFields) {
-      setFormStatus('error')
-      return
+    if (!form.name || !form.email || !form.subject || !form.message) {
+      setStatus({ type: 'error', text: t.required });
+      return;
     }
 
-    const emailSubject = encodeURIComponent(`[Sprintz Website] ${formData.subject.trim()}`)
-    const emailBody = encodeURIComponent(
-      `Name: ${formData.name.trim()}
-Company: ${formData.company.trim() || '-'}
-Email: ${formData.email.trim()}
+    setSubmitting(true);
+    setStatus({ type: '', text: '' });
 
-Requirement:
-${formData.message.trim()}`
-    )
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
 
-    window.location.href = `mailto:chanlp@sprintz.com.sg?cc=zannchan@gmail.com&subject=${emailSubject}&body=${emailBody}`
-    setFormStatus('success')
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || t.error);
+      }
+
+      setStatus({ type: 'success', text: t.success });
+      setForm({
+        name: '',
+        company: '',
+        email: '',
+        subject: '',
+        message: '',
+      });
+    } catch (error) {
+      setStatus({ type: 'error', text: error.message || t.error });
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
-    <div className="site-shell" dir={isRtl ? 'rtl' : 'ltr'}>
+    <div className={`site-shell ${isArabic ? 'rtl' : ''}`}>
       <header className="topbar">
-        <div className="container nav-row">
-          <a href="#home" className="brand">Sprintz Holdings</a>
-          <nav className="nav-links">
+        <div className="container topbar-inner">
+          <div className="brand">{t.brand}</div>
+          <nav className="nav">
             <a href="#about">{t.navAbout}</a>
             <a href="#sectors">{t.navSectors}</a>
             <a href="#markets">{t.navMarkets}</a>
             <a href="#contact">{t.navContact}</a>
           </nav>
-          <div className="lang-switcher">
-            {languages.map((item) => (
+          <div className="lang-switch">
+            {langs.map((code) => (
               <button
-                key={item.code}
-                className={item.code === lang ? 'lang-btn active' : 'lang-btn'}
-                onClick={() => setLang(item.code)}
+                key={code}
+                className={lang === code ? 'active' : ''}
+                onClick={() => setLang(code)}
               >
-                {item.label}
+                {code === 'en' ? 'EN' : code === 'zh' ? '中文' : code === 'ar' ? 'العربية' : 'ID'}
               </button>
             ))}
           </div>
         </div>
       </header>
 
+      <section className="hero">
+        <div className="container hero-grid">
+          <div>
+            <div className="badge">{t.badge}</div>
+            <h1>{t.heroTitle}</h1>
+            <p>{t.heroText}</p>
+            <div className="hero-actions">
+              <a href="#contact" className="btn btn-primary">{t.primaryCta}</a>
+              <a href="#sectors" className="btn btn-secondary">{t.secondaryCta}</a>
+            </div>
+            <div className="stats-grid">
+              {t.stats.map(([label, value]) => (
+                <div className="stat-card" key={label}>
+                  <span>{label}</span>
+                  <strong>{value}</strong>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="glass-card">
+            <div className="card-title">{t.strengthTitle}</div>
+            <ul className="strength-list">
+              {t.strengths.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" className="section section-light">
+        <div className="container two-col">
+          <div>
+            <div className="section-label">{t.navAbout}</div>
+            <h2>{t.aboutTitle}</h2>
+          </div>
+          <div className="muted-text">
+            <p>{t.aboutText1}</p>
+            <p>{t.aboutText2}</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="sectors" className="section section-soft">
+        <div className="container">
+          <div className="section-label">{t.navSectors}</div>
+          <h2>{t.sectorsTitle}</h2>
+          <div className="sector-grid">
+            {t.sectors.map(([title, text]) => (
+              <div className="sector-card" key={title}>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="markets" className="section section-light">
+        <div className="container market-card">
+          <div>
+            <div className="section-label">{t.navMarkets}</div>
+            <h2>{t.marketsTitle}</h2>
+          </div>
+          <div className="market-list">
+            {t.markets.map((market) => (
+              <span key={market}>{market}</span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" className="section section-light">
+        <div className="container contact-grid">
+          <div>
+            <div className="section-label">{t.navContact}</div>
+            <h2>{t.contactTitle}</h2>
+            <p className="muted-text">{t.contactText}</p>
+            <div className="office-card">
+              <strong>{t.officeTitle}</strong>
+              <div>{t.officeAddress}</div>
+            </div>
+          </div>
+
+          <form className="contact-form" onSubmit={handleSubmit}>
+            <div className="form-grid">
+              <input name="name" placeholder={t.name} value={form.name} onChange={handleChange} />
+              <input name="company" placeholder={t.company} value={form.company} onChange={handleChange} />
+              <input
+                className="full"
+                name="email"
+                type="email"
+                placeholder={t.email}
+                value={form.email}
+                onChange={handleChange}
+              />
+              <input
+                className="full"
+                name="subject"
+                placeholder={t.subject}
+                value={form.subject}
+                onChange={handleChange}
+              />
+              <textarea
+                className="full"
+                name="message"
+                placeholder={t.message}
+                value={form.message}
+                onChange={handleChange}
+              />
+            </div>
+
+            {status.text ? (
+              <div className={`form-status ${status.type}`}>{status.text}</div>
+            ) : null}
+
+            <div className="form-actions">
+              <button type="submit" className="btn btn-primary" disabled={submitting}>
+                {submitting ? t.submitting : t.submit}
+              </button>
+              <a
+                className="btn btn-secondary"
+                href={`https://wa.me/${whatsappNumber}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {t.whatsapp}
+              </a>
+            </div>
+          </form>
+        </div>
+      </section>
+
       <a
-        href="https://wa.me/6583889168"
         className="whatsapp-float"
+        href={`https://wa.me/${whatsappNumber}`}
         target="_blank"
         rel="noreferrer"
-        aria-label={t.floatingWhatsapp}
       >
-        <span className="whatsapp-icon">✆</span>
-        <span>{t.floatingWhatsapp}</span>
+        {t.whatsappFloat}
       </a>
 
-      <main>
-        <section id="home" className="hero section-dark">
-          <div className="container hero-grid">
-            <div>
-              <div className="eyebrow">{t.heroBadge}</div>
-              <h1>{t.heroTitle}</h1>
-              <p className="hero-text">{t.heroText}</p>
-              <div className="cta-row">
-                <a href="#contact" className="btn btn-primary">{t.primaryCta}</a>
-                <a href="#sectors" className="btn btn-secondary">{t.secondaryCta}</a>
-              </div>
-              <div className="stats-grid">
-                <div className="stat-card"><span>{t.stat1Label}</span><strong>{t.stat1Value}</strong></div>
-                <div className="stat-card"><span>{t.stat2Label}</span><strong>{t.stat2Value}</strong></div>
-                <div className="stat-card"><span>{t.stat3Label}</span><strong>{t.stat3Value}</strong></div>
-              </div>
-            </div>
-            <aside className="panel-card">
-              <div className="panel-title">{t.whyTitle}</div>
-              <ul className="strength-list">
-                {t.strengths.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </aside>
-          </div>
-        </section>
-
-        <section id="about" className="section section-light">
-          <div className="container two-col">
-            <div>
-              <div className="section-eyebrow">{t.aboutEyebrow}</div>
-              <h2>{t.aboutTitle}</h2>
-            </div>
-            <div className="body-copy">
-              <p>{t.aboutText1}</p>
-              <p>{t.aboutText2}</p>
-            </div>
-          </div>
-        </section>
-
-        <section id="sectors" className="section section-soft">
-          <div className="container">
-            <div className="section-head">
-              <div className="section-eyebrow">{t.sectorsEyebrow}</div>
-              <h2>{t.sectorsTitle}</h2>
-            </div>
-            <div className="card-grid four-up">
-              {t.sectors.map((sector) => (
-                <article key={sector.title} className="info-card">
-                  <h3>{sector.title}</h3>
-                  <p>{sector.text}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="markets" className="section section-light">
-          <div className="container market-band">
-            <div>
-              <div className="section-eyebrow">{t.marketsEyebrow}</div>
-              <h2>{t.marketsTitle}</h2>
-            </div>
-            <div className="pill-row">
-              {t.markets.map((market) => (
-                <span key={market} className="pill">{market}</span>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="section section-dark alt-dark">
-          <div className="container two-col wide-gap">
-            <div>
-              <div className="section-eyebrow light">{t.diffEyebrow}</div>
-              <h2>{t.diffTitle}</h2>
-            </div>
-            <div className="card-grid two-up">
-              {t.diffs.map((item) => (
-                <div key={item} className="dark-card">{item}</div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="contact" className="section section-light">
-          <div className="container contact-grid">
-            <div>
-              <div className="section-eyebrow">{t.contactEyebrow}</div>
-              <h2>{t.contactTitle}</h2>
-              <p className="body-copy single">{t.contactText}</p>
-              <div className="address-card">
-                <strong>Sprintz Holdings Pte. Ltd.</strong>
-                <span>{t.address}</span>
-              </div>
-            </div>
-            <form className="form-card" onSubmit={handleSubmit}>
-              <div className="form-grid">
-                <input placeholder={t.formName} value={formData.name} onChange={handleChange('name')} />
-                <input placeholder={t.formCompany} value={formData.company} onChange={handleChange('company')} />
-                <input placeholder={t.formEmail} className="span-2" value={formData.email} onChange={handleChange('email')} />
-                <input placeholder={t.formSubject} className="span-2" value={formData.subject} onChange={handleChange('subject')} />
-                <textarea placeholder={t.formMessage} className="span-2" rows="7" value={formData.message} onChange={handleChange('message')} />
-              </div>
-              {formStatus === 'success' && <div className="form-feedback success">{t.formSuccess}</div>}
-              {formStatus === 'error' && <div className="form-feedback error">{t.formIncomplete}</div>}
-              <div className="cta-row">
-                <button type="submit" className="btn btn-primary">{t.submit}</button>
-                <a href="https://wa.me/6583889168" className="btn btn-secondary" target="_blank" rel="noreferrer">{t.whatsapp}</a>
-              </div>
-            </form>
-          </div>
-        </section>
-      </main>
-
       <footer className="footer">
-        <div className="container footer-row">
-          <span>{t.footerText}</span>
-          <span>chanlp@sprintz.com.sg</span>
-        </div>
+        <div className="container">{t.footer}</div>
       </footer>
     </div>
-  )
+  );
 }
