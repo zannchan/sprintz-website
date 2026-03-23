@@ -1,45 +1,24 @@
-# Sprintz Holdings — Final Production Package
+# Sprintz Holdings Vercel Website
 
-This is a production-ready Next.js website package for **www.sprintz.com.sg**.
+This is a Vite + React website project prepared for Sprintz Holdings Pte. Ltd.
 
-## Included
-- Multi-page business website
-- Professional industrial/trading visual design
-- Single CTA set: **WhatsApp Us** and **Request Quote**
-- Visible contact email: **chanlp@sprintz.com.sg**
-- Hidden internal copy on form submissions: **BCC to zannchan@gmail.com**
-- Server-side contact form API route using **Resend**
+## Run locally
 
-## Pages
-- /
-- /company
-- /industrial-supply
-- /commodities
-- /global-sourcing
-- /contact
+```bash
+npm install
+npm run dev
+```
 
-## Local setup
-1. Install Node.js 18+.
-2. Run:
-   npm install
-3. Copy `.env.example` to `.env.local`
-4. Add your Resend API key in `.env.local`
-5. Run:
-   npm run dev
+## Build for production
+
+```bash
+npm run build
+```
 
 ## Deploy to Vercel
-1. Create a GitHub repository.
-2. Upload all files in this package.
-3. Import the repo into Vercel.
-4. In Vercel project settings, add environment variables from `.env.example`.
-5. Deploy.
 
-## DNS to Vercel
-In your DNS manager / Plesk, set:
-- A record: `@` -> `76.76.21.21`
-- CNAME: `www` -> the value shown by Vercel in Project > Settings > Domains
-
-## Important
-- Replace the placeholder logo block later with the final logo artwork if desired.
-- The form sends email using the server-side API route at `/api/contact`.
-- If you want branded sending, configure your sending domain in Resend.
+1. Upload all files to your GitHub repo.
+2. Connect the repo to Vercel.
+3. Vercel will auto-detect Vite.
+4. Add `www.sprintz.com.sg` and `sprintz.com.sg` in Vercel domain settings.
+5. Set `www.sprintz.com.sg` as the primary domain.
