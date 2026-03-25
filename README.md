@@ -1,19 +1,26 @@
-# Sprintz Corporate Deploy Package
+# Sprintz Corporate Deploy Package v2
 
-This package is a Vite + React website for Sprintz Holdings Pte. Ltd.
+This package includes:
+- corporate homepage revamp
+- direct website contact form via `/api/contact`
+- WhatsApp buttons with professional default message
+- built-in professional SVG visuals for a more corporate look
 
-## Included
-- Corporate-style homepage redesign
-- Professional dark navy / premium visual direction
-- Business lines for commodities, energy, industrial supply, aviation, and medical sectors
-- Siemens and Allen-Bradley / Rockwell positioning
-- Floating WhatsApp button on all pages
-
-## GitHub Upload
-Upload these items directly to the root of your GitHub repository:
+## Upload to GitHub
+Upload these items directly to the root of your GitHub repo:
 - `package.json`
 - `vite.config.js`
 - `vercel.json`
 - `index.html`
 - `src/`
 - `public/`
+- `api/`
+
+## Vercel environment variables
+Set these in Project Settings -> Environment Variables:
+- `RESEND_API_KEY`
+- `RESEND_FROM_EMAIL`
+- `CONTACT_TO_EMAIL`
+- `CONTACT_CC_EMAIL`
+
+Email sending will only work after Resend domain verification is complete and the project is redeployed.
