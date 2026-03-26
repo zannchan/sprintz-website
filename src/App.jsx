@@ -54,7 +54,7 @@ export default function App() {
     'Hello Sprintz Holdings, I would like to make a business enquiry regarding your products, markets, and supply capabilities.'
   )
   const whatsappHref = `https://wa.me/${whatsappNumber}?text=${whatsappText}`
-  const formAction = 'https://formspree.io/f/your-form-id'
+  const formAction = 'https://www.sprintz.com.sg/'
 
   function handleSubmit() {
     setStatus({
