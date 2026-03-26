@@ -1,26 +1,13 @@
-# Sprintz Corporate Deploy Package v2
+# Sprintz Formspree + WhatsApp Package
 
-This package includes:
-- corporate homepage revamp
-- direct website contact form via `/api/contact`
-- WhatsApp buttons with professional default message
-- built-in professional SVG visuals for a more corporate look
+Replace the Formspree endpoint in `src/App.jsx`:
+`https://formspree.io/f/your-form-id`
 
-## Upload to GitHub
-Upload these items directly to the root of your GitHub repo:
-- `package.json`
-- `vite.config.js`
-- `vercel.json`
-- `index.html`
-- `src/`
-- `public/`
-- `api/`
+with your real Formspree form URL.
 
-## Vercel environment variables
-Set these in Project Settings -> Environment Variables:
-- `RESEND_API_KEY`
-- `RESEND_FROM_EMAIL`
-- `CONTACT_TO_EMAIL`
-- `CONTACT_CC_EMAIL`
-
-Email sending will only work after Resend domain verification is complete and the project is redeployed.
+Included:
+- same corporate design direction
+- Formspree form handling
+- WhatsApp floating button with professional default text
+- broader international trading write-up
+- market coverage including Singapore, Malaysia, Thailand, China, UAE, USA and more
