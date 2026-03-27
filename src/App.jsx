@@ -1,5 +1,33 @@
 import { useState } from 'react'
 
+const businessLines = [
+  {
+    title: 'Commodities & Raw Materials',
+    items: ['ICUMSA 45 Sugar', 'Non-GMO Soya Beans', 'Yellow Corns', 'Iron Ore Fines', 'Copper Cathodes', 'Nickel', 'Aluminium Ingot', 'Lithium', 'Gold', 'Scrap Metals', 'Coal'],
+  },
+  {
+    title: 'Energy Products',
+    items: ['EN590', 'LNG', 'LPG', 'Light Cycle Oil', 'Light Crude Oil'],
+  },
+  {
+    title: 'Industrial & Technical Supply',
+    items: ['Siemens Industrial Products', 'Allen-Bradley / Rockwell', 'Factory Equipment', 'Electrical & Automation Solutions', 'Technical Procurement Support'],
+  },
+  {
+    title: 'Specialized Trade',
+    items: ['Chicken Paws', 'Aviation and Equipment', 'Medical Equipment and Consumables', 'Project Procurement', 'Strategic Sourcing'],
+  },
+]
+
+const markets = ['Singapore', 'Malaysia', 'Thailand', 'China', 'UAE', 'USA', 'Indonesia', 'Vietnam', 'India', 'Middle East']
+
+const valuePoints = [
+  'Professional coordination for buyers, suppliers, and institutional counterparties',
+  'Cross-border trade support with disciplined commercial presentation',
+  'Coverage across commodities, energy, industrial supply, aviation, and medical sectors',
+  'Singapore-based profile with broader regional and global market positioning',
+]
+
 export default function App() {
   const [status, setStatus] = useState({ type: '', text: '' })
   const [submitting, setSubmitting] = useState(false)
@@ -15,7 +43,6 @@ export default function App() {
     e.preventDefault()
     setSubmitting(true)
     setStatus({ type: '', text: '' })
-
     const form = e.target
     const formData = new FormData(form)
 
@@ -26,24 +53,14 @@ export default function App() {
         headers: { Accept: 'application/json' },
       })
       const data = await response.json()
-
       if (response.ok) {
-        setStatus({
-          type: 'success',
-          text: 'Thank you. Your enquiry has been submitted successfully.',
-        })
+        setStatus({ type: 'success', text: 'Thank you. Your enquiry has been submitted successfully.' })
         form.reset()
       } else {
-        setStatus({
-          type: 'error',
-          text: data?.errors?.[0]?.message || 'Unable to submit enquiry.',
-        })
+        setStatus({ type: 'error', text: data?.errors?.[0]?.message || 'Unable to submit enquiry.' })
       }
     } catch {
-      setStatus({
-        type: 'error',
-        text: 'Unable to submit enquiry.',
-      })
+      setStatus({ type: 'error', text: 'Unable to submit enquiry.' })
     } finally {
       setSubmitting(false)
     }
@@ -67,7 +84,6 @@ export default function App() {
             <a href="#markets">Markets</a>
             <a href="#contact">Contact</a>
           </nav>
-          <div className="menu-mark">—</div>
         </div>
       </header>
 
@@ -77,11 +93,10 @@ export default function App() {
             <div className="badge">International Trading Company</div>
             <h1>Corporate enquiries for global trade and supply partnerships.</h1>
             <p>
-              Sprintz Holdings Pte. Ltd. is a Singapore-based international trading
-              company supporting commodities, energy products, industrial supply, aviation
-              equipment, medical consumables, and strategic procurement across regional and
-              global markets. We focus on professional coordination, reliable partner
-              engagement, and commercially structured trade support.
+              Sprintz Holdings Pte. Ltd. is a Singapore-based international trading company supporting
+              commodities, energy products, industrial supply, aviation equipment, medical consumables,
+              and strategic procurement across regional and global markets. We focus on professional
+              coordination, reliable partner engagement, and commercially structured trade support.
             </p>
 
             <div className="hero-actions">
@@ -99,18 +114,54 @@ export default function App() {
       <section id="about" className="section section-light with-divider">
         <div className="container about-grid">
           <div className="about-copy">
-            <div className="section-label">Contact</div>
-            <h2>Corporate enquiries and strategic trade discussions.</h2>
+            <div className="section-label">About</div>
+            <h2>Professional international trade positioning for serious counterparties.</h2>
             <p>
-              Sprintz Holdings Pte. Ltd. welcomes serious enquiries from buyers, suppliers,
-              and business partners across international markets. Contact our team for product
-              availability, sourcing support, cross-border supply coordination, and structured
-              trade opportunities.
+              Sprintz Holdings Pte. Ltd. supports structured supply opportunities across Asia,
+              the Middle East, the United States, and wider international markets. The company
+              profile is designed to support serious buyer and supplier discussions with a more
+              established corporate presentation.
             </p>
+
+            <div className="value-panel">
+              <div className="panel-label">Why counterparties engage Sprintz</div>
+              <ul className="value-list">
+                {valuePoints.map((item) => <li key={item}>{item}</li>)}
+              </ul>
+            </div>
           </div>
 
           <div className="about-image-card">
             <img src="/boardroom.png" alt="Executive business meeting" />
+          </div>
+        </div>
+      </section>
+
+      <section id="sectors" className="section section-soft">
+        <div className="container">
+          <div className="section-label">Business Lines</div>
+          <h2>Structured coverage across trade, supply, and technical sourcing.</h2>
+          <div className="card-grid">
+            {businessLines.map((group) => (
+              <article className="info-card" key={group.title}>
+                <h3>{group.title}</h3>
+                <ul>
+                  {group.items.map((item) => <li key={item}>{item}</li>)}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="markets" className="section section-dark">
+        <div className="container market-grid">
+          <div>
+            <div className="section-label section-label-dark">Markets</div>
+            <h2>Regional and international counterparties across key trade corridors.</h2>
+          </div>
+          <div className="market-tags">
+            {markets.map((market) => <span key={market}>{market}</span>)}
           </div>
         </div>
       </section>
@@ -120,6 +171,12 @@ export default function App() {
           <div>
             <div className="section-label">Contact</div>
             <h2>Corporate enquiries and strategic trade discussions.</h2>
+            <p className="contact-lead">
+              Sprintz Holdings Pte. Ltd. welcomes serious enquiries from buyers, suppliers,
+              and business partners across international markets. Contact our team for product
+              availability, sourcing support, cross-border supply coordination, and structured
+              trade opportunities.
+            </p>
             <div className="office-card">
               <strong>Sprintz Holdings Pte. Ltd.</strong>
               <div>22 Sin Ming Lane, #06-76, Midview City, Singapore 573969</div>

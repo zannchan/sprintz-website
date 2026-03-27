@@ -1,12 +1,11 @@
-# Sprintz Exact Preview Deploy Package
+# Sprintz Perfect Website Package
 
-Built to closely match the approved preview:
-- cream, navy, and gold luxury corporate style
-- hero shipping/world map visual
-- boardroom strategy image section
-- upgraded contact section copy
+Fixes:
+- hero text no longer overlaps or gets cut off
+- business lines, markets, and full contact sections restored
+- cleaner full corporate flow
 - Formspree endpoint already set to https://formspree.io/f/meepqlbo
-- WhatsApp floating button
+- WhatsApp floating button included
 
 Upload these to your GitHub repo root:
 - src/
