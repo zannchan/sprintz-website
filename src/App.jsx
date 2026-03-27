@@ -1,61 +1,15 @@
 import { useState } from 'react'
 
-const sectors = [
-  {
-    title: 'Commodities & Raw Materials',
-    items: ['ICUMSA 45 Sugar', 'Non-GMO Soya Beans', 'Yellow Corns', 'Iron Ore Fines', 'Copper Cathodes', 'Nickel', 'Aluminium Ingot', 'Lithium', 'Gold', 'Scrap Metals', 'Coal'],
-  },
-  {
-    title: 'Energy Products',
-    items: ['EN590', 'LNG', 'LPG', 'Light Cycle Oil', 'Light Crude Oil'],
-  },
-  {
-    title: 'Industrial & Technical Supply',
-    items: ['Siemens Industrial Products', 'Allen-Bradley / Rockwell', 'Factory Equipment', 'Electrical & Automation Solutions', 'Technical Procurement Support'],
-  },
-  {
-    title: 'Specialized Trade',
-    items: ['Chicken Paws', 'Aviation and Equipment', 'Medical Equipment and Consumables', 'Project Procurement', 'Other Structured Trade Opportunities'],
-  },
-]
-
-const countryCoverage = ['Singapore', 'Malaysia', 'Thailand', 'China', 'UAE', 'USA', 'Indonesia', 'Vietnam', 'India', 'Middle East']
-
-const strengths = [
-  'Singapore-based international trading company with broader regional and global outlook',
-  'Structured support for cross-border supply, procurement, and partner coordination',
-  'Professional presentation designed for buyers, suppliers, and institutional counterparties',
-  'Coverage across commodities, metals, energy products, industrial equipment, aviation, and medical sectors',
-  'Commercially disciplined enquiry handling with a stronger corporate profile',
-  'Positioning suitable for counterparties seeking a reliable trading and sourcing partner',
-]
-
-const writeups = [
-  {
-    title: 'Corporate Profile',
-    text: 'Sprintz Holdings Pte. Ltd. is positioned as a Singapore-based international trading company supporting structured supply opportunities across Asia, the Middle East, the United States, and wider global markets.',
-  },
-  {
-    title: 'Market Footprint',
-    text: 'The website profile is built to support enquiries and relationships spanning Singapore, Malaysia, Thailand, China, the UAE, the USA, Indonesia, Vietnam, India, and other strategic trade corridors.',
-  },
-  {
-    title: 'Commercial Focus',
-    text: 'Sprintz is presented around commodities, energy products, industrial supply, aviation equipment, medical consumables, and project procurement with stronger emphasis on corporate discipline and practical execution support.',
-  },
-]
-
 export default function App() {
   const [status, setStatus] = useState({ type: '', text: '' })
   const [submitting, setSubmitting] = useState(false)
 
+  const formAction = 'https://formspree.io/f/meepqlbo'
   const whatsappNumber = '6583889168'
   const whatsappText = encodeURIComponent(
     'Hello Sprintz Holdings, I would like to make a business enquiry regarding your products, markets, and supply capabilities.'
   )
   const whatsappHref = `https://wa.me/${whatsappNumber}?text=${whatsappText}`
-
-  const formAction = 'https://formspree.io/f/meepqlbo'
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -71,7 +25,6 @@ export default function App() {
         body: formData,
         headers: { Accept: 'application/json' },
       })
-
       const data = await response.json()
 
       if (response.ok) {
@@ -114,77 +67,50 @@ export default function App() {
             <a href="#markets">Markets</a>
             <a href="#contact">Contact</a>
           </nav>
+          <div className="menu-mark">—</div>
         </div>
       </header>
 
       <section className="hero">
-        <div className="hero-art hero-art-left"></div>
-        <div className="hero-art hero-art-right"></div>
         <div className="container hero-grid">
           <div className="hero-copy">
             <div className="badge">International Trading Company</div>
-            <h1>Corporate Trade Positioning With Broader Global Reach.</h1>
+            <h1>Corporate enquiries for global trade and supply partnerships.</h1>
             <p>
-              Sprintz Holdings Pte. Ltd. is positioned as a Singapore-based international trading
-              company supporting commodities, energy products, industrial supply, aviation,
-              medical equipment, and strategic procurement with a stronger corporate identity
-              and partner-facing presence.
+              Sprintz Holdings Pte. Ltd. is a Singapore-based international trading
+              company supporting commodities, energy products, industrial supply, aviation
+              equipment, medical consumables, and strategic procurement across regional and
+              global markets. We focus on professional coordination, reliable partner
+              engagement, and commercially structured trade support.
             </p>
+
             <div className="hero-actions">
               <a className="btn btn-primary" href="#contact">Submit Corporate Enquiry</a>
               <a className="btn btn-secondary" href="#sectors">Explore Business Lines</a>
             </div>
           </div>
 
-          <div className="hero-panel">
-            <div className="panel-label">Why Counterparties Engage Sprintz</div>
-            <ul className="strength-list">
-              {strengths.map((item) => <li key={item}>{item}</li>)}
-            </ul>
+          <div className="hero-image-card">
+            <img src="/hero-shipping.png" alt="Global trade and shipping" />
           </div>
         </div>
       </section>
 
-      <section id="about" className="section section-light">
-        <div className="container two-col">
-          <div>
-            <div className="section-label">About Sprintz</div>
-            <h2>A stronger corporate presence for serious trading relationships.</h2>
+      <section id="about" className="section section-light with-divider">
+        <div className="container about-grid">
+          <div className="about-copy">
+            <div className="section-label">Contact</div>
+            <h2>Corporate enquiries and strategic trade discussions.</h2>
+            <p>
+              Sprintz Holdings Pte. Ltd. welcomes serious enquiries from buyers, suppliers,
+              and business partners across international markets. Contact our team for product
+              availability, sourcing support, cross-border supply coordination, and structured
+              trade opportunities.
+            </p>
           </div>
-          <div className="body-copy">
-            {writeups.map((item) => (
-              <div key={item.title} className="writeup-block">
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      <section id="sectors" className="section section-soft">
-        <div className="container">
-          <div className="section-label">Business Lines</div>
-          <h2>Core sectors presented with a stronger international trading framework.</h2>
-          <div className="card-grid">
-            {sectors.map((group) => (
-              <article className="info-card" key={group.title}>
-                <h3>{group.title}</h3>
-                <ul>{group.items.map((item) => <li key={item}>{item}</li>)}</ul>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="markets" className="section section-dark">
-        <div className="container market-block">
-          <div>
-            <div className="section-label section-label-dark">Geographic Reach</div>
-            <h2>Aligned for counterparties across Asia, the Middle East, and broader international markets.</h2>
-          </div>
-          <div className="market-tags">
-            {countryCoverage.map((market) => <span key={market}>{market}</span>)}
+          <div className="about-image-card">
+            <img src="/boardroom.png" alt="Executive business meeting" />
           </div>
         </div>
       </section>
@@ -193,11 +119,7 @@ export default function App() {
         <div className="container contact-grid">
           <div>
             <div className="section-label">Contact</div>
-            <h2>Corporate enquiry channel.</h2>
-            <p className="body-copy">
-              This version uses Formspree for website enquiries and WhatsApp for direct messaging,
-              providing a simpler and more reliable contact flow.
-            </p>
+            <h2>Corporate enquiries and strategic trade discussions.</h2>
             <div className="office-card">
               <strong>Sprintz Holdings Pte. Ltd.</strong>
               <div>22 Sin Ming Lane, #06-76, Midview City, Singapore 573969</div>
@@ -221,7 +143,7 @@ export default function App() {
               <button type="submit" className="btn btn-primary" disabled={submitting}>
                 {submitting ? 'Submitting...' : 'Submit Enquiry'}
               </button>
-              <a className="btn btn-secondary-dark" href={whatsappHref} target="_blank" rel="noreferrer">
+              <a className="btn btn-secondary-plain" href={whatsappHref} target="_blank" rel="noreferrer">
                 WhatsApp Us
               </a>
             </div>
@@ -230,16 +152,8 @@ export default function App() {
       </section>
 
       <a className="whatsapp-float" href={whatsappHref} target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp">
-        <span className="wa-icon">◉</span>
-        <span>Chat on WhatsApp</span>
+        <span className="wa-ring">◉</span>
       </a>
-
-      <footer className="footer">
-        <div className="container footer-inner">
-          <div>Sprintz Holdings Pte. Ltd.</div>
-          <div>International Trade · Structured Supply · Regional & Global Market Coverage</div>
-        </div>
-      </footer>
     </div>
   )
 }
