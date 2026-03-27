@@ -1,8 +1,9 @@
-# Sprintz Deployable Package
+# Sprintz Full Deploy Package
 
 Included:
-- luxury navy-gold corporate hero style
-- stronger, more visible headline typography
+- cream and navy luxury corporate design
+- no duplicate hero image
+- stronger visible typography
 - refined Sprintz brand mark in the header
 - Formspree endpoint already set to: https://formspree.io/f/meepqlbo
 - WhatsApp floating button

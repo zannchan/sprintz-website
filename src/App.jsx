@@ -86,7 +86,7 @@ export default function App() {
           text: data?.errors?.[0]?.message || 'Unable to submit enquiry.',
         })
       }
-    } catch (error) {
+    } catch {
       setStatus({
         type: 'error',
         text: 'Unable to submit enquiry.',
@@ -101,14 +101,13 @@ export default function App() {
       <header className="topbar">
         <div className="container topbar-inner">
           <div className="brand-wrap">
-            <div className="brand-mark">
-              <span>S</span>
-            </div>
-            <div>
+            <div className="brand-mark"><span>S</span></div>
+            <div className="brand-copy">
               <div className="brand">SPRINTZ HOLDINGS</div>
               <div className="brand-sub">PTE. LTD.</div>
             </div>
           </div>
+
           <nav className="nav">
             <a href="#about">About</a>
             <a href="#sectors">Business Lines</a>
@@ -119,8 +118,8 @@ export default function App() {
       </header>
 
       <section className="hero">
-        <img className="hero-banner" src="/hero-banner.png" alt="Sprintz luxury corporate hero" />
-        <div className="hero-overlay"></div>
+        <div className="hero-art hero-art-left"></div>
+        <div className="hero-art hero-art-right"></div>
         <div className="container hero-grid">
           <div className="hero-copy">
             <div className="badge">International Trading Company</div>
