@@ -3,7 +3,7 @@ import { useState } from 'react'
 const sectors = [
   {
     title: 'Commodities & Raw Materials',
-    items: ['ICUMSA 45 Sugar', 'Non-GMO Soya Beans for Human Consumption', 'Yellow Corns (Animal Feeds)', 'Iron Ore Fines', 'Copper Cathodes', 'Nickel', 'Aluminium Ingot', 'Lithium', 'Gold', 'Scrap Metals', 'Coal'],
+    items: ['ICUMSA 45 Sugar', 'Non-GMO Soya Beans', 'Yellow Corns', 'Iron Ore Fines', 'Copper Cathodes', 'Nickel', 'Aluminium Ingot', 'Lithium', 'Gold', 'Scrap Metals', 'Coal'],
   },
   {
     title: 'Energy Products',
@@ -19,12 +19,10 @@ const sectors = [
   },
 ]
 
-const countryCoverage = [
-  'Singapore', 'Malaysia', 'Thailand', 'China', 'UAE', 'USA', 'Indonesia', 'Vietnam', 'India', 'Middle East'
-]
+const countryCoverage = ['Singapore', 'Malaysia', 'Thailand', 'China', 'UAE', 'USA', 'Indonesia', 'Vietnam', 'India', 'Middle East']
 
 const strengths = [
-  'Singapore-based international trading company with a broader regional and global outlook',
+  'Singapore-based international trading company with broader regional and global outlook',
   'Structured support for cross-border supply, procurement, and partner coordination',
   'Professional presentation designed for buyers, suppliers, and institutional counterparties',
   'Coverage across commodities, metals, energy products, industrial equipment, aviation, and medical sectors',
@@ -35,15 +33,15 @@ const strengths = [
 const writeups = [
   {
     title: 'Corporate Profile',
-    text: 'Sprintz Holdings Pte. Ltd. is presented as a professional Singapore-based international trading company supporting structured supply opportunities across Asia, the Middle East, and broader global markets.',
+    text: 'Sprintz Holdings Pte. Ltd. is positioned as a Singapore-based international trading company supporting structured supply opportunities across Asia, the Middle East, the United States, and wider global markets.',
   },
   {
     title: 'Market Footprint',
-    text: 'The business profile is framed to support enquiries and relationships spanning Singapore, Malaysia, Thailand, China, the UAE, the USA, Indonesia, Vietnam, India, and other strategic regional corridors.',
+    text: 'The website profile is built to support enquiries and relationships spanning Singapore, Malaysia, Thailand, China, the UAE, the USA, Indonesia, Vietnam, India, and other strategic trade corridors.',
   },
   {
     title: 'Commercial Focus',
-    text: 'Sprintz is positioned around commodities, energy products, industrial supply, aviation equipment, medical consumables, and project procurement with emphasis on corporate discipline and practical execution support.',
+    text: 'Sprintz is presented around commodities, energy products, industrial supply, aviation equipment, medical consumables, and project procurement with stronger emphasis on corporate discipline and practical execution support.',
   },
 ]
 
@@ -71,9 +69,7 @@ export default function App() {
       const response = await fetch(formAction, {
         method: 'POST',
         body: formData,
-        headers: {
-          Accept: 'application/json',
-        },
+        headers: { Accept: 'application/json' },
       })
 
       const data = await response.json()
@@ -105,8 +101,13 @@ export default function App() {
       <header className="topbar">
         <div className="container topbar-inner">
           <div className="brand-wrap">
-            <div className="brand">SPRINTZ HOLDINGS</div>
-            <div className="brand-sub">PTE. LTD.</div>
+            <div className="brand-mark">
+              <span>S</span>
+            </div>
+            <div>
+              <div className="brand">SPRINTZ HOLDINGS</div>
+              <div className="brand-sub">PTE. LTD.</div>
+            </div>
           </div>
           <nav className="nav">
             <a href="#about">About</a>
@@ -118,9 +119,8 @@ export default function App() {
       </header>
 
       <section className="hero">
-        <img className="hero-image" src="/hero-world.svg" alt="Corporate global trade graphic" />
-        <div className="hero-glow hero-glow-left" />
-        <div className="hero-glow hero-glow-right" />
+        <img className="hero-banner" src="/hero-banner.png" alt="Sprintz luxury corporate hero" />
+        <div className="hero-overlay"></div>
         <div className="container hero-grid">
           <div className="hero-copy">
             <div className="badge">International Trading Company</div>
@@ -135,15 +135,10 @@ export default function App() {
               <a className="btn btn-primary" href="#contact">Submit Corporate Enquiry</a>
               <a className="btn btn-secondary" href="#sectors">Explore Business Lines</a>
             </div>
-            <div className="hero-metrics">
-              <div className="metric-card"><span>Headquartered</span><strong>Singapore</strong></div>
-              <div className="metric-card"><span>Orientation</span><strong>International Trade</strong></div>
-              <div className="metric-card"><span>Approach</span><strong>Structured Supply</strong></div>
-            </div>
           </div>
 
           <div className="hero-panel">
-            <div className="panel-label">Why counterparties engage Sprintz</div>
+            <div className="panel-label">Why Counterparties Engage Sprintz</div>
             <ul className="strength-list">
               {strengths.map((item) => <li key={item}>{item}</li>)}
             </ul>
@@ -155,7 +150,7 @@ export default function App() {
         <div className="container two-col">
           <div>
             <div className="section-label">About Sprintz</div>
-            <h2>A more established corporate presence for serious trading relationships.</h2>
+            <h2>A stronger corporate presence for serious trading relationships.</h2>
           </div>
           <div className="body-copy">
             {writeups.map((item) => (
@@ -168,37 +163,7 @@ export default function App() {
         </div>
       </section>
 
-      <section className="section section-soft">
-        <div className="container">
-          <div className="section-label">Corporate Visuals</div>
-          <h2>Professional presentation designed for a stronger market impression.</h2>
-          <div className="visual-grid">
-            <article className="visual-card">
-              <img src="/hero-world.svg" alt="Global trade network" />
-              <div className="visual-content">
-                <h3>International Trade Profile</h3>
-                <p>Sharper visual language for cross-border sourcing, global connectivity, and structured supply positioning.</p>
-              </div>
-            </article>
-            <article className="visual-card">
-              <img src="/industrial-visual.svg" alt="Industrial supply" />
-              <div className="visual-content">
-                <h3>Industrial Supply Positioning</h3>
-                <p>Cleaner presentation for Siemens, Allen-Bradley / Rockwell, factory equipment, and technical procurement support.</p>
-              </div>
-            </article>
-            <article className="visual-card">
-              <img src="/corporate-grid.svg" alt="Corporate layout" />
-              <div className="visual-content">
-                <h3>Partner-Facing Credibility</h3>
-                <p>A more professional business image for counterparties evaluating Sprintz across multiple product and market categories.</p>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="sectors" className="section section-light">
+      <section id="sectors" className="section section-soft">
         <div className="container">
           <div className="section-label">Business Lines</div>
           <h2>Core sectors presented with a stronger international trading framework.</h2>
@@ -232,7 +197,7 @@ export default function App() {
             <h2>Corporate enquiry channel.</h2>
             <p className="body-copy">
               This version uses Formspree for website enquiries and WhatsApp for direct messaging,
-              providing a simpler and more reliable contact flow without DNS-based email sending issues.
+              providing a simpler and more reliable contact flow.
             </p>
             <div className="office-card">
               <strong>Sprintz Holdings Pte. Ltd.</strong>

@@ -1,13 +1,17 @@
-# Sprintz Formspree + WhatsApp Package
-
-Replace the Formspree endpoint in `src/App.jsx`:
-`https://formspree.io/f/your-form-id`
-
-with your real Formspree form URL.
+# Sprintz Deployable Package
 
 Included:
-- same corporate design direction
-- Formspree form handling
-- WhatsApp floating button with professional default text
-- broader international trading write-up
-- market coverage including Singapore, Malaysia, Thailand, China, UAE, USA and more
+- luxury navy-gold corporate hero style
+- stronger, more visible headline typography
+- refined Sprintz brand mark in the header
+- Formspree endpoint already set to: https://formspree.io/f/meepqlbo
+- WhatsApp floating button
+
+Upload these to your GitHub repo root:
+- src/
+- public/
+- index.html
+- package.json
+- vite.config.js
+- vercel.json
+- README.md
