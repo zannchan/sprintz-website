@@ -111,7 +111,7 @@ export default function App() {
         </div>
       </section>
 
-      <section id="about" className="section section-light with-divider">
+      <section id="about" className="section section-white">
         <div className="container about-grid">
           <div className="about-copy">
             <div className="section-label">About</div>
@@ -154,10 +154,10 @@ export default function App() {
         </div>
       </section>
 
-      <section id="markets" className="section section-dark">
+      <section id="markets" className="section section-white">
         <div className="container market-grid">
           <div>
-            <div className="section-label section-label-dark">Markets</div>
+            <div className="section-label">Markets</div>
             <h2>Regional and international counterparties across key trade corridors.</h2>
           </div>
           <div className="market-tags">
@@ -166,7 +166,7 @@ export default function App() {
         </div>
       </section>
 
-      <section id="contact" className="section section-light">
+      <section id="contact" className="section section-soft">
         <div className="container contact-grid">
           <div>
             <div className="section-label">Contact</div>
