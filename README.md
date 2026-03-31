@@ -1,12 +1,10 @@
-# Sprintz White Corporate Package
+# Sprintz Business Lines Green Package
 
-This version changes the website to:
-- white background
-- professional corporate theme
-- cleaner trading imagery
-- restored business lines, markets, about, and contact sections
-- Formspree endpoint already set to https://formspree.io/f/meepqlbo
-- WhatsApp floating button included
+Included:
+- white and green business lines section
+- 5 card images cropped from the approved preview
+- updated categories including solar farm, biomass, warehouse storage, and infrastructure support
+- deploy-ready Vite package for GitHub + Vercel
 
 Upload these to your GitHub repo root:
 - src/
@@ -16,7 +14,3 @@ Upload these to your GitHub repo root:
 - vite.config.js
 - vercel.json
 - README.md
-
-
-Fix applied:
-- vercel.json rebuilt to remove invalid properties and pass Vercel schema validation.
