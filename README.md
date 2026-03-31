@@ -1,10 +1,12 @@
-# Sprintz Business Lines Green Package
+# Sprintz Complete Restored Package
 
-Included:
-- white and green business lines section
-- 5 card images cropped from the approved preview
-- updated categories including solar farm, biomass, warehouse storage, and infrastructure support
-- deploy-ready Vite package for GitHub + Vercel
+This package restores the full website and includes:
+- hero section
+- about section
+- updated business lines section with 5 images
+- markets section
+- contact section with Formspree
+- WhatsApp floating button
 
 Upload these to your GitHub repo root:
 - src/
