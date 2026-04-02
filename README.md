@@ -1,13 +1,12 @@
-# Sprintz Full Deploy Package
+# Sprintz Multilingual Professional Package
 
-This package includes:
-- full homepage revamp
-- professional header with smaller typography
-- refined hero and about visuals matching the business-lines style
-- stronger corporate write-up for Sprintz
-- full business lines section
+Included:
+- professional hero and about sections with real images
+- smaller text inside image captions
+- full business-lines section
 - markets section
 - contact section
+- language switching for English, Chinese, Arabic, and Indonesian
 
 Upload these files to your GitHub repo root:
 - src/
