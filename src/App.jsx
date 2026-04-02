@@ -1,132 +1,61 @@
-import { useState } from 'react'
-
-const valuePoints = [
-  'Professional coordination for buyers, suppliers, and institutional counterparties',
-  'Cross-border trade support with disciplined commercial presentation',
-  'Coverage across commodities, energy, industrial supply, logistics, and infrastructure-related sectors',
-  'Singapore-based profile with broader regional and global market positioning',
-]
-
 const businessLines = [
   {
     title: 'Commodities & Raw Materials',
-    image: '/card-commodities.png',
-    items: [
-      'ICUMSA 45 Sugar',
-      'Non-GMO Soya Beans',
-      'Yellow Corns',
-      'Iron Ore Fines',
-      'Copper Cathodes',
-      'Nickel',
-      'Aluminium Ingot',
-      'Lithium',
-      'Scrap Metals',
-      'Coal Supply',
-    ],
+    image: 'https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=900&q=80',
+    items: ['ICUMSA 45 Sugar', 'Non-GMO Soya Beans', 'Yellow Corns', 'Iron Ore Fines', 'Copper Cathodes', 'Nickel', 'Aluminium Ingot', 'Lithium', 'Scrap Metals', 'Coal Supply'],
   },
   {
     title: 'Energy & Power Projects',
-    image: '/card-energy.png',
-    items: [
-      'EN590',
-      'LNG',
-      'LPG',
-      'Light Cycle Oil',
-      'Light Crude Oil',
-      'Solar-Related Projects',
-      'Solar Farm Opportunities in Indonesia',
-      'Biomass Generator Power Solutions',
-      'Power Generation Project Support',
-    ],
+    image: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=900&q=80',
+    items: ['EN590', 'LNG', 'LPG', 'Light Cycle Oil', 'Light Crude Oil', 'Solar-Related Projects', 'Solar Farm Opportunities in Indonesia', 'Biomass Generator Power Solutions', 'Power Generation Project Support'],
   },
   {
     title: 'Industrial, Technical & Equipment Supply',
-    image: '/card-industrial.png',
-    items: [
-      'Siemens Industrial Products',
-      'Allen-Bradley / Rockwell',
-      'Factory Equipment',
-      'Electrical & Automation Solutions',
-      'Technical Procurement Support',
-      'Medical Equipment and Consumables',
-      'Aviation Equipment',
-      'Data Centre Related Supply Support',
-    ],
+    image: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=80',
+    items: ['Siemens Industrial Products', 'Allen-Bradley / Rockwell', 'Factory Equipment', 'Electrical & Automation Solutions', 'Technical Procurement Support', 'Medical Equipment and Consumables', 'Aviation Equipment', 'Data Centre Related Supply Support'],
   },
   {
     title: 'Logistics, Storage & Project Support',
-    image: '/card-logistics.png',
-    items: [
-      'Warehouse Storage Services',
-      'Project Procurement',
-      'Strategic Sourcing',
-      'Cross-Border Supply Coordination',
-      'Distribution Support',
-      'Commercial Fulfilment Assistance',
-      'Storage and Handling Solutions',
-    ],
+    image: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=900&q=80',
+    items: ['Warehouse Storage Services', 'Project Procurement', 'Strategic Sourcing', 'Cross-Border Supply Coordination', 'Distribution Support', 'Commercial Fulfilment Assistance', 'Storage and Handling Solutions'],
   },
   {
     title: 'Infrastructure & Construction Opportunities',
-    image: '/card-infra.png',
-    items: [
-      'Stadium Construction Support',
-      'Bridge and Road Infrastructure Opportunities',
-      'Residential Development Support',
-      'Commercial Building Projects',
-      'Data Centre Development Related Opportunities',
-      'General Infrastructure Supply and Coordination',
-    ],
+    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=80',
+    items: ['Stadium Construction Support', 'Bridge and Road Infrastructure Opportunities', 'Residential Development Support', 'Commercial Building Projects', 'Data Centre Development Related Opportunities', 'General Infrastructure Supply and Coordination'],
   },
 ]
 
 const markets = ['Singapore', 'Malaysia', 'Thailand', 'China', 'UAE', 'USA', 'Indonesia', 'Vietnam', 'India', 'Middle East']
 
-export default function App() {
-  const [status, setStatus] = useState({ type: '', text: '' })
-  const [submitting, setSubmitting] = useState(false)
+const strengths = [
+  'Professional coordination for buyers, suppliers, and institutional counterparties',
+  'Coverage across commodities, energy, industrial supply, logistics, and infrastructure-related sectors',
+  'Singapore-based platform with broader regional and global market positioning',
+  'Structured enquiry handling for project-driven and cross-border transactions',
+]
 
-  const formAction = 'https://formspree.io/f/meepqlbo'
-  const whatsappNumber = '6583889168'
-  const whatsappText = encodeURIComponent(
-    'Hello Sprintz Holdings, I would like to make a business enquiry regarding your products, markets, and supply capabilities.'
-  )
-  const whatsappHref = `https://wa.me/${whatsappNumber}?text=${whatsappText}`
-
-  async function handleSubmit(e) {
-    e.preventDefault()
-    setSubmitting(true)
-    setStatus({ type: '', text: '' })
-    const form = e.target
-    const formData = new FormData(form)
-
-    try {
-      const response = await fetch(formAction, {
-        method: 'POST',
-        body: formData,
-        headers: { Accept: 'application/json' },
-      })
-      const data = await response.json()
-      if (response.ok) {
-        setStatus({ type: 'success', text: 'Thank you. Your enquiry has been submitted successfully.' })
-        form.reset()
-      } else {
-        setStatus({ type: 'error', text: data?.errors?.[0]?.message || 'Unable to submit enquiry.' })
-      }
-    } catch {
-      setStatus({ type: 'error', text: 'Unable to submit enquiry.' })
-    } finally {
-      setSubmitting(false)
-    }
-  }
-
+function ImageCard({ label, subtitle }) {
   return (
-    <main className="page">
+    <div className="image-card">
+      <div className="image-card-overlay" />
+      <div className="image-card-top-box" />
+      <div className="image-card-brand">SPRINTZ HOLDINGS</div>
+      <div className="image-card-title">{label}</div>
+      <div className="image-card-subtitle">{subtitle}</div>
+      <div className="image-card-accent" />
+    </div>
+  )
+}
+
+export default function App() {
+  return (
+    <div className="site-shell">
       <header className="topbar">
         <div className="container topbar-inner">
           <div className="brand-wrap">
-            <div className="brand-mark"><span>S</span></div>
-            <div className="brand-copy">
+            <div className="brand-mark">S</div>
+            <div>
               <div className="brand">SPRINTZ HOLDINGS</div>
               <div className="brand-sub">PTE. LTD.</div>
             </div>
@@ -134,7 +63,7 @@ export default function App() {
 
           <nav className="nav">
             <a href="#about">About</a>
-            <a href="#sectors">Business Lines</a>
+            <a href="#business-lines">Business Lines</a>
             <a href="#markets">Markets</a>
             <a href="#contact">Contact</a>
           </nav>
@@ -148,51 +77,56 @@ export default function App() {
             <h1>Corporate enquiries for global trade and supply partnerships.</h1>
             <p className="lead">
               Sprintz Holdings Pte. Ltd. is a Singapore-based international trading company supporting
-              commodities, energy products, industrial supply, aviation equipment, medical consumables,
-              logistics solutions, and infrastructure-related opportunities across regional and global markets.
+              commodities, energy products, industrial supply, logistics solutions, and
+              infrastructure-related opportunities across regional and global markets.
             </p>
-            <div className="hero-actions">
-              <a className="btn btn-primary" href="#contact">Submit Corporate Enquiry</a>
-              <a className="btn btn-secondary" href="#sectors">Explore Business Lines</a>
+            <div className="button-row">
+              <button className="btn btn-primary">Submit Corporate Enquiry</button>
+              <button className="btn btn-secondary">Explore Business Lines</button>
             </div>
           </div>
 
-          <div className="hero-image-card">
-            {true ? <img src="/hero-shipping.png" alt="Global trade and shipping" /> : <img src="/hero-shipping.svg" alt="Global trade and shipping" />}
-          </div>
+          <ImageCard
+            label="Global trade. Structured supply. Regional reach."
+            subtitle="trade · logistics · infrastructure"
+          />
         </div>
       </section>
 
-      <section id="about" className="section section-light">
+      <section id="about" className="section about-section">
         <div className="container about-grid">
           <div>
             <div className="section-label">ABOUT</div>
             <h2>Professional international trade positioning for serious counterparties.</h2>
-            <p className="section-intro">
-              Sprintz Holdings Pte. Ltd. supports structured supply opportunities across Asia, the Middle East,
-              the United States, and wider international markets. The company profile is designed to support serious
-              buyer and supplier discussions with a more established corporate presentation.
+            <p className="body-copy">
+              Sprintz Holdings Pte. Ltd. supports structured supply opportunities across Asia, the
+              Middle East, the United States, and wider international markets. The company profile is
+              designed to support serious buyer and supplier discussions with a stronger corporate
+              presentation and more disciplined commercial profile.
             </p>
 
-            <div className="value-panel">
-              <div className="panel-title">Why counterparties engage Sprintz</div>
-              <ul className="value-list">
-                {valuePoints.map((item) => <li key={item}>{item}</li>)}
+            <div className="panel">
+              <div className="panel-title">WHY COUNTERPARTIES ENGAGE SPRINTZ</div>
+              <ul className="strength-list">
+                {strengths.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
               </ul>
             </div>
           </div>
 
-          <div className="about-image-card">
-            {true ? <img src="/boardroom.png" alt="Executive business meeting" /> : <img src="/boardroom.svg" alt="Executive business meeting" />}
-          </div>
+          <ImageCard
+            label="Executive coordination for supply, projects, and partnerships."
+            subtitle="buyers · suppliers · institutions"
+          />
         </div>
       </section>
 
-      <section id="sectors" className="section section-green">
+      <section id="business-lines" className="section business-lines-section">
         <div className="container">
           <div className="section-label">BUSINESS LINES</div>
-          <h2>Integrated capabilities across trade, energy, industrial supply, logistics, and infrastructure support.</h2>
-          <p className="section-intro wide">
+          <h2 className="wide-heading">Integrated capabilities across trade, energy, industrial supply, logistics, and infrastructure support.</h2>
+          <p className="body-copy wide-copy">
             Sprintz Holdings Pte. Ltd. supports a broader commercial platform spanning commodities,
             conventional and renewable energy, industrial procurement, warehousing, and selected
             infrastructure-related opportunities across regional and international markets.
@@ -200,12 +134,16 @@ export default function App() {
 
           <div className="cards-grid">
             {businessLines.map((card) => (
-              <article className="business-card" key={card.title}>
-                <img className="card-image" src={card.image} alt={card.title} />
+              <article key={card.title} className="business-card">
+                <div className="card-image-wrap">
+                  <img src={card.image} alt={card.title} className="card-image" />
+                </div>
                 <div className="card-body">
                   <h3>{card.title}</h3>
                   <ul>
-                    {card.items.map((item) => <li key={item}>{item}</li>)}
+                    {card.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
                   </ul>
                 </div>
               </article>
@@ -214,63 +152,56 @@ export default function App() {
         </div>
       </section>
 
-      <section id="markets" className="section section-dark">
-        <div className="container market-grid">
+      <section id="markets" className="section markets-section">
+        <div className="container markets-grid">
           <div>
-            <div className="section-label section-label-dark">MARKETS</div>
-            <h2 className="light">Regional and international counterparties across key trade corridors.</h2>
+            <div className="section-label section-label-light">MARKETS</div>
+            <h2 className="light-heading">Regional and international counterparties across key trade corridors.</h2>
           </div>
+
           <div className="market-tags">
-            {markets.map((m) => <span key={m}>{m}</span>)}
+            {markets.map((market) => (
+              <span key={market}>{market}</span>
+            ))}
           </div>
         </div>
       </section>
 
-      <section id="contact" className="section section-light">
+      <section id="contact" className="section contact-section">
         <div className="container contact-grid">
           <div>
             <div className="section-label">CONTACT</div>
             <h2>Corporate enquiries and strategic trade discussions.</h2>
-            <p className="section-intro">
-              Sprintz Holdings Pte. Ltd. welcomes serious enquiries from buyers, suppliers, and business partners
-              across international markets. Contact our team for product availability, sourcing support, cross-border
-              supply coordination, and structured trade opportunities.
+            <p className="body-copy">
+              Sprintz Holdings Pte. Ltd. welcomes serious enquiries from buyers, suppliers, and
+              business partners across international markets. Contact our team for product
+              availability, sourcing support, cross-border supply coordination, and structured
+              trade opportunities.
             </p>
 
             <div className="office-card">
-              <strong>Sprintz Holdings Pte. Ltd.</strong>
+              <div className="office-title">Sprintz Holdings Pte. Ltd.</div>
               <div>22 Sin Ming Lane, #06-76, Midview City, Singapore 573969</div>
               <div>Email: chanlp@sprintz.com.sg</div>
             </div>
           </div>
 
-          <form className="contact-form" onSubmit={handleSubmit}>
+          <div className="contact-form">
             <div className="form-grid">
-              <input name="name" placeholder="Full Name" required />
-              <input name="company" placeholder="Company" />
-              <input className="full" name="email" type="email" placeholder="Business Email" required />
-              <input className="full" name="subject" placeholder="Subject" required />
-              <textarea className="full" name="message" placeholder="Tell us about your enquiry" required />
-              <input type="hidden" name="_subject" value="Sprintz Website Enquiry" />
+              <input placeholder="Full Name" />
+              <input placeholder="Company" />
+              <input className="full" placeholder="Business Email" />
+              <input className="full" placeholder="Subject" />
+              <textarea className="full" placeholder="Tell us about your enquiry" />
             </div>
 
-            {status.text ? <div className={`form-status ${status.type}`}>{status.text}</div> : null}
-
-            <div className="form-actions">
-              <button type="submit" className="btn btn-primary" disabled={submitting}>
-                {submitting ? 'Submitting...' : 'Submit Enquiry'}
-              </button>
-              <a className="btn btn-secondary-plain" href={whatsappHref} target="_blank" rel="noreferrer">
-                WhatsApp Us
-              </a>
+            <div className="button-row">
+              <button className="btn btn-primary">Submit Enquiry</button>
+              <button className="btn btn-secondary">WhatsApp Us</button>
             </div>
-          </form>
+          </div>
         </div>
       </section>
-
-      <a className="whatsapp-float" href={whatsappHref} target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp">
-        <span className="wa-ring">◉</span>
-      </a>
-    </main>
+    </div>
   )
 }
