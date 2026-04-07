@@ -1,5 +1,5 @@
 {
-  "name": "sprintz-site-fix",
+  "name": "sprintz-contact-whatsapp-fixed",
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -13,6 +13,7 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "vite": "^5.4.19"
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^5.4.11"
   }
 }
