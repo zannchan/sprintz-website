@@ -1,19 +1,24 @@
-# Sprintz Contact + WhatsApp Fixed Full Package
+# Sprintz Static Fixed Deploy Package
 
-Fixed:
-- email form submission via Formspree endpoint https://formspree.io/f/meepqlbo
-- WhatsApp button click
-- floating WhatsApp button restored
+This is a static deployment package, so there is no npm build step and no Vite/React install failure.
 
-Current settings inside src/App.jsx:
+Included:
+- working email form via Formspree
+- working WhatsApp button
+- working floating WhatsApp button
+- full website code in plain HTML, CSS, and JavaScript
+
+Current settings:
 - Formspree endpoint: https://formspree.io/f/meepqlbo
 - WhatsApp number: 6583889168
 
-Upload these files to your GitHub repo root:
-- src/
-- public/
+Files:
 - index.html
-- package.json
-- vite.config.js
+- styles.css
+- script.js
 - vercel.json
-- README.md
+
+Deploy:
+1. Delete old repo contents
+2. Upload these files to the repo root
+3. Redeploy on Vercel
