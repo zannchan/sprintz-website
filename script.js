@@ -1,57 +1,62 @@
-const FORM_ENDPOINT = 'https://formspree.io/f/meepqlbo';
-const WHATSAPP_NUMBER = '6583889168';
+/*
+  Central site settings.
+  Update whatsappNumber if you want to switch the WhatsApp destination later.
+*/
+const SITE_CONFIG = {
+  whatsappNumber: '6598810636',
+  whatsappMessage:
+    'Hello Sprintz, I would like to enquire about your products / sourcing support.',
+  formspreeEndpoint: 'https://formspree.io/f/meepqlbo',
+};
 
-const whatsappMessage = encodeURIComponent(
-  'Hello Sprintz Holdings, I would like to make a business enquiry regarding your products, projects, and markets.'
-);
-const whatsappHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMessage}`;
-
-const whatsappButton = document.getElementById('whatsapp-button');
-const floatingWhatsapp = document.getElementById('floating-whatsapp');
-
-if (whatsappButton) whatsappButton.href = whatsappHref;
-if (floatingWhatsapp) floatingWhatsapp.href = whatsappHref;
-
-const form = document.getElementById('enquiry-form');
-const statusBox = document.getElementById('form-status');
-
-function showStatus(type, text) {
-  statusBox.className = `status-box ${type}`;
-  statusBox.textContent = text;
+function buildWhatsAppUrl() {
+  const number = SITE_CONFIG.whatsappNumber.replace(/\D/g, '');
+  const message = encodeURIComponent(SITE_CONFIG.whatsappMessage);
+  return `https://wa.me/${number}?text=${message}`;
 }
 
-if (form) {
+function wireWhatsAppLinks() {
+  const url = buildWhatsAppUrl();
+  document.querySelectorAll('[data-whatsapp-link]').forEach((link) => {
+    link.setAttribute('href', url);
+    link.setAttribute('target', '_blank');
+    link.setAttribute('rel', 'noopener noreferrer');
+  });
+}
+
+async function wireForm() {
+  const form = document.getElementById('enquiry-form');
+  const status = document.getElementById('form-status');
+  if (!form || !status) return;
+
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
-
-    const submitButton = form.querySelector('button[type="submit"]');
-    const originalText = submitButton.textContent;
-
-    submitButton.disabled = true;
-    submitButton.textContent = 'Sending...';
-    statusBox.className = 'status-box hidden';
-    statusBox.textContent = '';
+    status.textContent = 'Sending enquiry...';
 
     const formData = new FormData(form);
 
     try {
-      const response = await fetch(FORM_ENDPOINT, {
+      const response = await fetch(SITE_CONFIG.formspreeEndpoint, {
         method: 'POST',
+        headers: {
+          Accept: 'application/json',
+        },
         body: formData,
-        headers: { Accept: 'application/json' }
       });
 
       if (response.ok) {
         form.reset();
-        showStatus('success', 'Thank you. Your enquiry has been submitted successfully.');
+        status.textContent = 'Thank you. Your enquiry has been sent successfully.';
       } else {
-        showStatus('error', 'Unable to submit your enquiry. Please try again or use WhatsApp.');
+        status.textContent =
+          'The form could not be submitted right now. Please try again or use WhatsApp.';
       }
     } catch (error) {
-      showStatus('error', 'Unable to submit your enquiry. Please try again or use WhatsApp.');
-    } finally {
-      submitButton.disabled = false;
-      submitButton.textContent = originalText;
+      status.textContent =
+        'The form could not be submitted right now. Please try again or use WhatsApp.';
     }
   });
 }
+
+wireWhatsAppLinks();
+wireForm();
